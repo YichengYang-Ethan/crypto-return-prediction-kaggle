@@ -17,4 +17,4 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Validate notebook
-        run: python3 -c "import json; nb=json.load(open('crypto_return_prediction.ipynb')); print(f'Notebook OK: {len(nb[\"cells\"])} cells')"
+        run: python3 -c 'import json; nb=json.load(open("crypto_return_prediction.ipynb")); print("Notebook OK:", len(nb["cells"]), "cells")'
