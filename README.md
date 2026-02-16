@@ -64,11 +64,12 @@ Uses LightGBM ensemble with time-series cross-validation and a feature engineeri
 
 ## Related Projects
 
-| Project | Role |
-|---------|------|
-| [clawdfolio](https://github.com/YichengYang-Ethan/clawdfolio) | Core engine — shared technical indicator framework (RSI, Bollinger, SMA) |
-| [investment-dashboard](https://github.com/YichengYang-Ethan/investment-dashboard) | Portfolio visualization frontend |
-| [QQQ-200D-Deviation-Dashboard](https://github.com/YichengYang-Ethan/QQQ-200D-Deviation-Dashboard) | Market timing signal using SMA deviation methodology |
+| Project | Relationship |
+|---------|-------------|
+| [clawdfolio](https://github.com/YichengYang-Ethan/clawdfolio) | **Shared methodology** — RSI, Bollinger, SMA indicators used in both feature engineering and production monitoring |
+| [ESG-Driven-Stock-Value-Prediction](https://github.com/YichengYang-Ethan/ESG-Driven-Stock-Value-Prediction) | **Complementary research** — this project predicts short-term momentum; ESG predicts long-term value |
+| [investment-dashboard](https://github.com/YichengYang-Ethan/investment-dashboard) | Portfolio visualization frontend powered by clawdfolio |
+| [QQQ-200D-Deviation-Dashboard](https://github.com/YichengYang-Ethan/QQQ-200D-Deviation-Dashboard) | Single-strategy dashboard using SMA deviation |
 
 ## License
 
