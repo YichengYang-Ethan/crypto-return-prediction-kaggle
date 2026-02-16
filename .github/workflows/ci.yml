@@ -16,5 +16,23 @@ jobs:
           python-version: "3.11"
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Validate notebook
-        run: python3 -c 'import json; nb=json.load(open("crypto_return_prediction.ipynb")); print("Notebook OK:", len(nb["cells"]), "cells")'
+      - name: Validate notebook structure
+        run: |
+          python3 -c '
+          import json
+          nb = json.load(open("crypto_return_prediction.ipynb"))
+          cells = nb["cells"]
+          code_cells = [c for c in cells if c["cell_type"] == "code"]
+          md_cells = [c for c in cells if c["cell_type"] == "markdown"]
+          print(f"Notebook OK: {len(cells)} cells ({len(code_cells)} code, {len(md_cells)} markdown)")
+          assert len(code_cells) > 0, "No code cells found"
+          '
+      - name: Verify dependencies importable
+        run: |
+          python3 -c '
+          import pandas
+          import numpy
+          import lightgbm
+          import sklearn
+          print("All dependencies importable")
+          '
