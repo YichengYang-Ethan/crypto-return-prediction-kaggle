@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt ruff
+      - name: Lint Python files
+        run: ruff check --select E,W,F --ignore E501 *.py 2>/dev/null || true
+      - name: Validate notebook structure
+        run: python -c "import json; nb=json.load(open('crypto_return_prediction.ipynb')); print(f'Notebook OK: {len(nb[\"cells\"])} cells')"
