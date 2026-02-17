@@ -45,6 +45,8 @@ Uses LightGBM ensemble with time-series cross-validation and a feature engineeri
 
 ## Results
 
+- **Validation**: 5-fold TimeSeriesSplit CV with MAE reported per fold (run on Kaggle to see exact scores)
+- **Ensemble**: Final predictions averaged across all 5 fold models for robustness
 - End-to-end pipeline: data ingestion, feature engineering, training, prediction
 - Overcame Kaggle memory constraints via `float32` precision, explicit `gc.collect()`, and batched prediction
 - Output: `submission.csv` conforming to competition format
@@ -53,7 +55,7 @@ Uses LightGBM ensemble with time-series cross-validation and a feature engineeri
 
 1. **Environment**: Kaggle Notebook
 2. **Data**: Competition data (`kline_data`, `submission_id.csv`) in `/kaggle/input/avenir-hku-web/`
-3. **Execution**: Run all cells in `notebookf25843c59d.ipynb` sequentially
+3. **Execution**: Run all cells in `crypto_return_prediction.ipynb` sequentially
 
 ## Future Work
 
