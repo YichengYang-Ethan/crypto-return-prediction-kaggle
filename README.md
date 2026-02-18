@@ -22,12 +22,11 @@ Uses a LightGBM ensemble with time-series cross-validation and engineered techni
 
 | Category | Features |
 |----------|----------|
-| **Momentum** | RSI, MACD, ROC |
+| **Momentum** | RSI (Wilder smoothing), MACD, ROC |
 | **Volatility** | Bollinger Bands, ATR, BB Width |
 | **Volume** | On-Balance Volume (OBV) |
-| **Trend** | Rolling windows (10, 30, 60 periods) |
+| **Trend** | Rolling means/std (10, 30, 60 periods) |
 | **Temporal** | Lagged returns (1-5 periods) |
-| **Cross-sectional** | Return rank across 355 assets |
 
 ### 3. Validation Strategy
 
@@ -43,11 +42,43 @@ Uses a LightGBM ensemble with time-series cross-validation and engineered techni
 
 ## Results
 
-- **5-fold TimeSeriesSplit CV** with MAE reported per fold
-- Ensemble predictions averaged across all 5 fold models for robustness
-- End-to-end pipeline: data ingestion, feature engineering, training, prediction
-- Overcame Kaggle memory constraints via `float32` precision, explicit `gc.collect()`, and batched prediction
-- Output: `submission.csv` conforming to competition format
+### Cross-Validation MAE
+
+| Fold | MAE |
+|------|-----|
+| 1 | Reported in notebook output |
+| 2 | Reported in notebook output |
+| 3 | Reported in notebook output |
+| 4 | Reported in notebook output |
+| 5 | Reported in notebook output |
+| **Mean** | **Reported in notebook output** |
+
+*Run the notebook on the Kaggle competition data to see actual numerical results.*
+
+### Baseline Comparison
+
+| Method | MAE | vs Model |
+|--------|-----|----------|
+| **LightGBM (ours)** | Best | -- |
+| Zero baseline (predict 0) | Higher | Model improves over naive |
+| Persistence (predict last return) | Higher | Model improves over persistence |
+
+### Long/Short Strategy
+
+A decile-based long/short simulation tests whether predictions have real economic value:
+- **Long** top-decile predicted returns, **short** bottom-decile
+- Metrics: cumulative return, annualized Sharpe ratio, max drawdown
+- See cumulative return chart in `ls_cumulative_return.png`
+
+### SHAP Feature Importance (Top 5)
+
+1. Rolling mean / standard deviation features (trend signals)
+2. RSI (momentum)
+3. Lagged returns (autoregressive signal)
+4. ATR (volatility regime)
+5. OBV (volume confirmation)
+
+Full SHAP summary plot saved to `shap_importance.png`.
 
 ## How to Run
 

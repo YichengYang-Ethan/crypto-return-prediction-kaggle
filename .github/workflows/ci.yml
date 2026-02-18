@@ -34,5 +34,7 @@ jobs:
           import numpy
           import lightgbm
           import sklearn
+          import shap
+          import matplotlib
           print("All dependencies importable")
           '
