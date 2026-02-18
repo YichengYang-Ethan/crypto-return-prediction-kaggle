@@ -1,5 +1,7 @@
 # Cryptocurrency 24-Hour Return Prediction
 
+[![CI](https://github.com/YichengYang-Ethan/crypto-return-prediction-kaggle/actions/workflows/ci.yml/badge.svg)](https://github.com/YichengYang-Ethan/crypto-return-prediction-kaggle/actions/workflows/ci.yml)
+
 Machine learning pipeline for predicting 24-hour forward returns across 355 cryptocurrencies, built for the **Avenir HKU Web3 Quant Competition**.
 
 Uses a LightGBM ensemble with time-series cross-validation and engineered technical indicators (RSI, MACD, Bollinger Bands, momentum signals).
